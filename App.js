@@ -3,7 +3,7 @@ import { View, Text, StatusBar as DefaultStatusBar } from 'react-native'
 import { createStore, applyMiddleware } from 'redux'
 import { Provider } from 'react-redux'
 import thunk from 'redux-thunk'
-import { StackNavigator } from 'react-navigation'
+import { StackNavigator, TabNavigator } from 'react-navigation'
 import { Constants } from 'expo'
 import Decks from './components/decks'
 import DeckView from './components/deck-view'
@@ -31,6 +31,30 @@ function StatusBar () {
   )
 }
 
+const Tabs = TabNavigator({
+  Decks: {
+    screen: Decks,
+    navigationOptions: {
+      tabBarLabel: 'Decks'
+    }
+  },
+  AddDeck: {
+    screen: AddDeck,
+    navigationOptions: {
+      tabBarLabel: 'Add Deck'
+    }
+  }
+}, {
+  navigationOptions: {
+    header: null
+  },
+  tabBarOptions: {
+    activeTintColor: white,
+    indicatorStyle: { backgroundColor: white },
+    style: { backgroundColor: black }
+  }
+})
+
 const stackNavigatorOptions = {
   headerTintColor: white,
   headerStyle: {
@@ -40,17 +64,10 @@ const stackNavigatorOptions = {
 
 const MainNavigation = StackNavigator({
   Home: {
-    screen: Decks,
-    navigationOptions: {
-      header: null
-    }
+    screen: Tabs
   },
   DeckView: {
     screen: DeckView,
-    navigationOptions: stackNavigatorOptions
-  },
-  AddDeck: {
-    screen: AddDeck,
     navigationOptions: stackNavigatorOptions
   }
 })

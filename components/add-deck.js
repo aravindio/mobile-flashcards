@@ -12,8 +12,6 @@ import Button from './button'
 import { white } from '../utils/colors'
 
 class AddDeck extends Component {
-  static navigationOptions = () => ({ title: 'Add Deck' })
-
   render() {
     return (
       <KeyboardAvoidingView behavior='padding' style={{ flex: 1 }}>
