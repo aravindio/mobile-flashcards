@@ -9,6 +9,7 @@ import {
 } from 'react-native'
 import { connect } from 'react-redux'
 import Button from './button'
+import Result from './result'
 import { white, gray, black } from '../utils/colors'
 
 class Quiz extends Component {
@@ -75,18 +76,13 @@ class Quiz extends Component {
                 <Button onPress={this.correct}>Correct</Button>
                 <Button onPress={this.incorrect}>Incorrect</Button>
               </View>
-            : <View style={styles.container}>
-                <Text>Result</Text>
-                <Text>{this.getPercentage()}</Text>
-                <Text>
-                  {
-                    `${questionsCorrect} out of ${questions.length} ` +
-                    `questions correct`
-                  }
-                </Text>
-                <Button onPress={this.restart}>Restart Quiz</Button>
-                <Button onPress={this.goBack}>Go Back</Button>
-              </View>
+            : <Result
+                percentage={this.getPercentage()}
+                restart={this.restart}
+                goBack={this.goBack}
+                correct={questionsCorrect}
+                count={questions.length}
+              />
         }
       </View>
     )
