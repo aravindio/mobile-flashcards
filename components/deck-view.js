@@ -28,7 +28,11 @@ class DeckView extends Component {
           Add Card
         </Button>
         {
-          cardsCount > 0 && <Button> Start Quiz </Button>
+          cardsCount > 0 && (
+            <Button onPress={() => navigation.navigate('Quiz', { title })}>
+              Start Quiz
+            </Button>
+          )
         }
       </View>
     )
