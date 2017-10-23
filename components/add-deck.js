@@ -7,12 +7,42 @@ import {
   TouchableWithoutFeedback,
   Keyboard
 } from 'react-native'
+import { connect } from 'react-redux'
+import { NavigationActions } from 'react-navigation'
 import Input from './input'
 import Button from './button'
+import { saveDeckTitle } from '../actions'
 import { white } from '../utils/colors'
 
 class AddDeck extends Component {
+  state = {
+    title: ''
+  }
+
+  submit = () => {
+    Keyboard.dismiss()
+    setTimeout(() => {
+      const { title } = this.state
+      if (title === '')
+        alert(`Deck title can't be empty.`)
+      else {
+        const deck = { [title]: { title, questions: [] } }
+        const { saveDeckTitle, navigation } = this.props
+        const { reset, navigate } = NavigationActions
+        const home = navigate({ routeName: 'Home' })
+        const deckView = navigate({ routeName: 'DeckView', params: { title } })
+        const actions = [home, deckView]
+        saveDeckTitle(deck)
+          .then(() => {
+            navigation.dispatch(reset({ index: 1, actions }))
+            this.setState({ title: '' })
+          })
+      }
+    }, 50)
+  }
+
   render() {
+    const { title } = this.state
     return (
       <KeyboardAvoidingView behavior='padding' style={{ flex: 1 }}>
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
@@ -20,8 +50,12 @@ class AddDeck extends Component {
             <Text style={styles.title}>
               What is the title of your new deck?
             </Text>
-            <Input placeholder='Deck Title' />
-            <Button>Create Deck</Button>
+            <Input
+              value={title}
+              placeholder='Deck Title'
+              onChange={title => this.setState({ title })}
+            />
+            <Button onPress={this.submit}>Create Deck</Button>
           </View>
         </TouchableWithoutFeedback>
       </KeyboardAvoidingView>
@@ -45,4 +79,10 @@ const styles = StyleSheet.create({
   }
 })
 
-export default AddDeck
+const mapStateToProps = store => ({ store })
+
+const mapDispatchToProps = dispatch => ({
+  saveDeckTitle: deck => dispatch(saveDeckTitle(deck))
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(AddDeck)
