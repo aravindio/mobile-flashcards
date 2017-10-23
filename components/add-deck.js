@@ -3,13 +3,13 @@ import {
   View,
   KeyboardAvoidingView,
   Text,
-  TextInput,
   StyleSheet,
   TouchableWithoutFeedback,
   Keyboard
 } from 'react-native'
+import Input from './input'
 import Button from './button'
-import { white, black } from '../utils/colors'
+import { white } from '../utils/colors'
 
 class AddDeck extends Component {
   static navigationOptions = () => ({ title: 'Add Deck' })
@@ -22,12 +22,7 @@ class AddDeck extends Component {
             <Text style={styles.title}>
               What is the title of your new deck?
             </Text>
-            <TextInput
-              autoCapitalize='sentences'
-              underlineColorAndroid='rgba(0, 0, 0, 0)'
-              placeholder='Deck Title'
-              style={styles.textInput}
-            />
+            <Input placeholder='Deck Title' />
             <Button>Create Deck</Button>
           </View>
         </TouchableWithoutFeedback>
@@ -47,22 +42,6 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 40,
     textAlign: 'center',
-    marginLeft: 20,
-    marginRight: 20
-  },
-  textInput: {
-    fontSize: 20,
-    height: 50,
-    color: black,
-    alignSelf: 'stretch',
-    borderWidth: 1,
-    borderColor: black,
-    borderStyle: 'solid',
-    borderRadius: 2,
-    paddingLeft: 10,
-    paddingRight: 10,
-    marginTop: 40,
-    marginBottom: 40,
     marginLeft: 20,
     marginRight: 20
   }
