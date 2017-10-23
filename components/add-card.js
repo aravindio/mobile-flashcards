@@ -23,6 +23,7 @@ class AddCard extends Component {
               placeholder='Question'
             />
             <Input
+              ml={true}
               style={styles.answerInput}
               placeholder='Answer'
             />

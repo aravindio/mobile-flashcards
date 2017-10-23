@@ -2,7 +2,11 @@ import React, { Component } from 'react'
 import { TextInput, StyleSheet } from 'react-native'
 import { black } from '../utils/colors'
 
-export default function Input ({ placeholder, onChange, value, style={} }) {
+export default function Input ({ placeholder, onChange, value, style={}, ml }) {
+  let multiline = {}
+  if (ml) {
+    multiline = { multiline: true }
+  }
   return (
     <TextInput
       autoCapitalize='sentences'
@@ -11,6 +15,7 @@ export default function Input ({ placeholder, onChange, value, style={} }) {
       onChangeText={onChange}
       value={value}
       style={[styles.textInput, style]}
+      { ...multiline }
     />
   )
 }
