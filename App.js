@@ -4,6 +4,7 @@ import { createStore, applyMiddleware } from 'redux'
 import { Provider } from 'react-redux'
 import thunk from 'redux-thunk'
 import { Constants } from 'expo'
+import Decks from './components/decks'
 import reducer from './reducers'
 import { black } from './utils/colors'
 
@@ -33,7 +34,7 @@ export default class App extends React.Component {
       <Provider store={store}>
         <View style={{ flex: 1 }}>
           <StatusBar />
-          <Text style={{ textAlign: 'center' }}>Hello world</Text>
+          <Decks />
         </View>
       </Provider>
     )
