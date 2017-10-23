@@ -9,7 +9,7 @@ import {
 } from 'react-native'
 import { connect } from 'react-redux'
 import { getDecks } from '../actions'
-import { gray, darkGray } from '../utils/colors'
+import { white, gray, darkGray } from '../utils/colors'
 
 class Decks extends Component {
   componentWillMount() {
@@ -28,9 +28,12 @@ class Decks extends Component {
 
   renderItem = ({ item }) => {
     const { title, cardsCount } = item
+    const { navigate } = this.props.navigation
     return (
       <View style={styles.touchableContainer}>
-        <TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => navigate('DeckView', { title })}
+        >
           <View style={styles.cardContainer}>
             <Text style={styles.cardTitle}>{title}</Text>
             <Text style={styles.cardsCount}>
@@ -46,7 +49,7 @@ class Decks extends Component {
     const { store } = this.props
     const data = this.changeShape(store)
     const props = {
-      style: data.length > 0 ? {} : styles.container
+      style: data.length > 0 ? styles.listContainer : styles.container
     }
     return (
       <View { ...props }>
@@ -76,7 +79,13 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    alignSelf: 'center'
+    alignSelf: 'stretch',
+    backgroundColor: white
+  },
+  listContainer: {
+    flex: 1,
+    alignSelf: 'stretch',
+    backgroundColor: white
   },
   touchableContainer: {
     borderBottomColor: gray,
