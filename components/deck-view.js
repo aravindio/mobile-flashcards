@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
-import { View, Text, StyleSheet, TouchableNativeFeedback } from 'react-native'
+import { View, Text, StyleSheet } from 'react-native'
 import { connect } from 'react-redux'
-import { white, darkGray, black } from '../utils/colors'
+import Button from './button'
+import { white, darkGray } from '../utils/colors'
 
 class DeckView extends Component {
   static navigationOptions = ({ navigation }) => {
@@ -20,28 +21,12 @@ class DeckView extends Component {
         <Text style={styles.cardsCount}>
           {`${cardsCount} card${cardsCount === 1 ? '' : 's'}`}
         </Text>
-        <TouchableNativeFeedback
-          useForeground
-          background={TouchableNativeFeedback.Ripple('#CCCCCC', true)}
-          style={{ flex: 1 }}
-        >
-          <View style={[styles.button, { backgroundColor: white }]}>
-            <Text style={[styles.buttonText, { color: black }]}>
-              Add card
-            </Text>
-          </View>
-        </TouchableNativeFeedback>
-        <TouchableNativeFeedback
-          useForeground
-          background={TouchableNativeFeedback.Ripple('#606060', true)}
-          style={{ flex: 1 }}
-        >
-          <View style={[styles.button, { backgroundColor: black }]}>
-            <Text style={[styles.buttonText, { color: white }]}>
-              Start Quiz
-            </Text>
-          </View>
-        </TouchableNativeFeedback>
+        <Button type='outline'>
+          Add Card
+        </Button>
+        <Button>
+          Start Quiz
+        </Button>
       </View>
     )
   }
@@ -63,24 +48,6 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     color: darkGray,
     marginBottom: 50
-  },
-  button: {
-    paddingTop: 20,
-    paddingBottom: 20,
-    marginBottom: 20,
-    marginLeft: 45,
-    marginRight: 45,
-    justifyContent: 'center',
-    borderRadius: 2,
-    height: 50,
-    alignSelf: 'stretch',
-    borderWidth: 1,
-    borderStyle: 'solid',
-    borderColor: black
-  },
-  buttonText: {
-    textAlign: 'center',
-    fontSize: 16
   }
 })
 
