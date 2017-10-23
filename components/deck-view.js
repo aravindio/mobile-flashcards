@@ -21,7 +21,10 @@ class DeckView extends Component {
         <Text style={styles.cardsCount}>
           {`${cardsCount} card${cardsCount === 1 ? '' : 's'}`}
         </Text>
-        <Button type='outline'>
+        <Button
+          type='outline'
+          onPress={() => navigation.navigate('AddCard', { title })}
+        >
           Add Card
         </Button>
         {

@@ -8,6 +8,7 @@ import { Constants } from 'expo'
 import Decks from './components/decks'
 import DeckView from './components/deck-view'
 import AddDeck from './components/add-deck'
+import AddCard from './components/add-card'
 import reducer from './reducers'
 import { black, white } from './utils/colors'
 
@@ -68,6 +69,10 @@ const MainNavigation = StackNavigator({
   },
   DeckView: {
     screen: DeckView,
+    navigationOptions: stackNavigatorOptions
+  },
+  AddCard: {
+    screen: AddCard,
     navigationOptions: stackNavigatorOptions
   }
 })
