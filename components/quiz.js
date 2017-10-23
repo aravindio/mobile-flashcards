@@ -1,16 +1,9 @@
 import React, { Component } from 'react'
-import {
-  View,
-  ScrollView,
-  Text,
-  StyleSheet,
-  Dimensions,
-  TouchableOpacity
-} from 'react-native'
+import { View, StyleSheet } from 'react-native'
 import { connect } from 'react-redux'
-import Button from './button'
+import QuizCard from './quiz-card'
 import Result from './result'
-import { white, gray, black } from '../utils/colors'
+import { white } from '../utils/colors'
 
 class Quiz extends Component {
   static navigationOptions = () => ({ title: 'Quiz' })
@@ -57,25 +50,12 @@ class Quiz extends Component {
       <View style={styles.container}>
         {
           currentQuestion < questions.length
-            ? <View style={styles.container}>
-                <Text style={styles.quizStatus}>
-                  {`Question ${currentQuestion + 1} of ${questions.length}`}
-                </Text>
-                <View style={styles.cardContainer}>
-                  <ScrollView contentContainerStyle={styles.scrollView}>
-                    <View style={styles.cardTextContainer}>
-                      <Text style={{ fontSize: 30 }}>
-                        {questions[currentQuestion].question}
-                      </Text>
-                    </View>
-                  </ScrollView>
-                  <TouchableOpacity style={styles.cardButton}>
-                    <Text style={{ color: white }}>Flip</Text>
-                  </TouchableOpacity>
-                </View>
-                <Button onPress={this.correct}>Correct</Button>
-                <Button onPress={this.incorrect}>Incorrect</Button>
-              </View>
+            ? <QuizCard
+                correct={this.correct}
+                incorrect={this.incorrect}
+                currentQuestion={currentQuestion}
+                questions={questions}
+              />
             : <Result
                 percentage={this.getPercentage()}
                 restart={this.restart}
@@ -96,43 +76,6 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
     alignSelf: 'stretch',
     backgroundColor: white
-  },
-  quizStatus: {
-    fontSize: 14,
-    marginTop: 20,
-    marginBottom: 20
-  },
-  cardContainer: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    height: 300,
-    width: Dimensions.get('window').width - 90,
-    marginLeft: 45,
-    marginRight: 45,
-    borderStyle: 'solid',
-    borderWidth: 1,
-    borderColor: gray,
-    borderRadius: 2,
-    marginBottom: 30
-  },
-  scrollView: {
-    flex: 1,
-    justifyContent: 'center'
-  },
-  cardTextContainer: {
-    padding: 20,
-    paddingBottom: 50
-  },
-  cardButton: {
-    paddingTop: 5,
-    paddingBottom: 5,
-    paddingLeft: 10,
-    paddingRight: 10,
-    backgroundColor: black,
-    position: 'absolute',
-    bottom: 10,
-    alignSelf: 'center',
-    borderRadius: 2
   }
 })
 
