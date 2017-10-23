@@ -7,6 +7,7 @@ import { StackNavigator } from 'react-navigation'
 import { Constants } from 'expo'
 import Decks from './components/decks'
 import DeckView from './components/deck-view'
+import AddDeck from './components/add-deck'
 import reducer from './reducers'
 import { black, white } from './utils/colors'
 
@@ -30,6 +31,13 @@ function StatusBar () {
   )
 }
 
+const stackNavigatorOptions = {
+  headerTintColor: white,
+  headerStyle: {
+    backgroundColor: black
+  }
+}
+
 const MainNavigation = StackNavigator({
   Home: {
     screen: Decks,
@@ -39,12 +47,11 @@ const MainNavigation = StackNavigator({
   },
   DeckView: {
     screen: DeckView,
-    navigationOptions: {
-      headerTintColor: white,
-      headerStyle: {
-        backgroundColor: black
-      }
-    }
+    navigationOptions: stackNavigatorOptions
+  },
+  AddDeck: {
+    screen: AddDeck,
+    navigationOptions: stackNavigatorOptions
   }
 })
 
