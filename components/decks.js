@@ -8,6 +8,7 @@ import {
   TouchableOpacity
 } from 'react-native'
 import { connect } from 'react-redux'
+import Button from './button'
 import { getDecks } from '../actions'
 import { white, gray, darkGray } from '../utils/colors'
 
@@ -46,7 +47,7 @@ class Decks extends Component {
   }
 
   render() {
-    const { store } = this.props
+    const { store, navigation } = this.props
     const data = this.changeShape(store)
     const props = {
       style: data.length > 0 ? styles.listContainer : styles.container
@@ -55,9 +56,14 @@ class Decks extends Component {
       <View { ...props }>
         {
           store === null
-            ? <Text>
-                You haven't added any decks yet
-              </Text>
+            ? <View style={styles.container}>
+                <Text style={styles.emptyListText}>
+                  You haven't added any decks yet
+                </Text>
+                <Button onPress={() => navigation.navigate('AddDeck')}>
+                  Add One
+                </Button>
+              </View>
             : this.isEmpty(store)
                 ? <ActivityIndicator
                     style={{ marginTop: 30 }}
@@ -74,6 +80,11 @@ class Decks extends Component {
   }
 }
 
+const horizontalPadding = {
+  paddingLeft: 20,
+  paddingRight: 20
+}
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -87,6 +98,12 @@ const styles = StyleSheet.create({
     alignSelf: 'stretch',
     backgroundColor: white
   },
+  emptyListText: {
+    fontSize: 20,
+    textAlign: 'center',
+    marginBottom: 30,
+    ...horizontalPadding
+  },
   touchableContainer: {
     borderBottomColor: gray,
     borderBottomWidth: 1,
@@ -94,10 +111,9 @@ const styles = StyleSheet.create({
   },
   cardContainer: {
     flex: 1,
-    paddingLeft: 20,
-    paddingRight: 20,
     paddingTop: 40,
-    paddingBottom: 40
+    paddingBottom: 40,
+    ...horizontalPadding
   },
   cardTitle: {
     fontSize: 30,
