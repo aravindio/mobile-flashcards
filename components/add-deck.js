@@ -38,7 +38,7 @@ class AddDeck extends Component {
             this.setState({ title: '' })
           })
       }
-    }, 50)
+    }, 100)
   }
 
   render() {

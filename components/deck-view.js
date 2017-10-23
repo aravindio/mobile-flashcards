@@ -24,9 +24,9 @@ class DeckView extends Component {
         <Button type='outline'>
           Add Card
         </Button>
-        <Button>
-          Start Quiz
-        </Button>
+        {
+          cardsCount > 0 && <Button> Start Quiz </Button>
+        }
       </View>
     )
   }
