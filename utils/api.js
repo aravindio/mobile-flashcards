@@ -1,1 +1,8 @@
-// API
+import { AsyncStorage } from 'react-native'
+
+const DECK_KEY = 'MobileFlashcards:Decks'
+
+export const getDecks = () =>
+  AsyncStorage.getItem(DECK_KEY)
+    .then(JSON.parse)
+    .then(decks => decks)
