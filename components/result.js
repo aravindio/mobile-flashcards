@@ -43,7 +43,7 @@ export default class Result extends Component {
         </View>
         <View style={styles.buttonsContainer}>
           <Button onPress={restart}>Restart Quiz</Button>
-          <Button onPress={goBack}>Go back</Button>
+          <Button onPress={goBack}>Back to Deck</Button>
         </View>
       </View>
     )
