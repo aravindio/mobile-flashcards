@@ -13,7 +13,7 @@ import { getDecks } from '../actions'
 import { white, gray, darkGray } from '../utils/colors'
 
 class Decks extends Component {
-  componentWillMount() {
+  componentDidMount() {
     this.props.getDecks()
   }
 
