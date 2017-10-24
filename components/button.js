@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, TouchableNativeFeedback } from 'react-native'
 import { black, white } from '../utils/colors'
 import { FontAwesome } from '@expo/vector-icons'
 
-export default function Button ({ onPress, children, type }) {
+export default function Button ({ onPress, children, type, icon }) {
   const isTypeOutline = type === 'outline'
   const rippleColor = isTypeOutline ? '#CCCCCC' : '#606060'
   const backgroundColor = isTypeOutline ? white : black
@@ -17,7 +17,8 @@ export default function Button ({ onPress, children, type }) {
     >
       <View style={[styles.button, { backgroundColor }]}>
         <Text style={[styles.buttonText, { color }]}>
-          {children}
+          {icon && <FontAwesome name={icon} size={16} color={white} />}
+          {icon ? ' ' + children : children}
         </Text>
       </View>
     </TouchableNativeFeedback>

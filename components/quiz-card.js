@@ -94,8 +94,12 @@ export default class QuizCard extends Component {
             </TouchableOpacity>
           </Animated.View>
         </View>
-        <Button onPress={() => this.optionClick(true)}>Correct</Button>
-        <Button onPress={() => this.optionClick()}>Incorrect</Button>
+        <Button onPress={() => this.optionClick(true)} icon='check-circle'>
+          Correct
+        </Button>
+        <Button onPress={() => this.optionClick()} icon='times-circle'>
+          Incorrect
+        </Button>
       </View>
     )
   }
