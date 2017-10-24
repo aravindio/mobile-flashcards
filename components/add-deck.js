@@ -79,10 +79,8 @@ const styles = StyleSheet.create({
   }
 })
 
-const mapStateToProps = store => ({ store })
-
 const mapDispatchToProps = dispatch => ({
   saveDeckTitle: deck => dispatch(saveDeckTitle(deck))
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(AddDeck)
+export default connect(null, mapDispatchToProps)(AddDeck)
