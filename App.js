@@ -11,6 +11,7 @@ import AddDeck from './components/add-deck'
 import AddCard from './components/add-card'
 import Quiz from './components/quiz'
 import reducer from './reducers'
+import { setLocalNotification } from './utils/helpers'
 import { black, white } from './utils/colors'
 
 const store = createStore(reducer, applyMiddleware(thunk))
@@ -83,6 +84,10 @@ const MainNavigation = StackNavigator({
 })
 
 export default class App extends React.Component {
+  componentDidMount() {
+    setLocalNotification()
+  }
+
   render() {
     return (
       <Provider store={store}>
