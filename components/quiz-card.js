@@ -124,7 +124,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: gray,
     borderRadius: 2,
-    marginBottom: 30,
+    marginBottom: 60,
     backgroundColor: white
   },
   back: {
